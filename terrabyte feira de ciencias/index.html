@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TerraByte - Protótipo de simulação e pesquisa sobre energia eólica">
+    <meta name="theme-color" content="#a8e8f7">
+    <title>TerraByte | Protótipo 000</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="railway/railway.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo-area">
+            <h1>TerraByte</h1>
+            <span>PROTÓTIPO 000</span>
+        </div>
+
+        <div class="system-status">
+            <span class="status-light"></span>
+            SISTEMA ONLINE
+        </div>
+    </header>
+
+    <nav class="site-navigation" aria-label="Navegação principal">
+        <a href="#simulationSection">Simulação da turbina</a>
+        <a href="#railwaySection">Sistema ferroviário</a>
+        <a href="#researchSection">Pesquisa</a>
+        <a href="#teamSection">Equipe</a>
+        <a href="#referencesSection">Referências</a>
+    </nav>
+
+    <main>
+        <section class="intro">
+            <span class="section-tag">PROJETO TERRABYTE</span>
+            <h2>Simulação de Energia Eólica</h2>
+            <p>
+                Sistema educacional desenvolvido para representar digitalmente
+                a geração de energia elétrica a partir do vento.
+            </p>
+        </section>
+
+        <!-- SEÇÃO 01: SIMULAÇÃO -->
+        <section class="simulation-section" id="simulationSection">
+            <div class="section-title">
+                <div class="section-number">01</div>
+                <div>
+                    <span class="section-tag">SIMULAÇÃO</span>
+                    <h2>Central de Energia Eólica</h2>
+                </div>
+            </div>
+
+            <section class="simulation">
+                <div class="turbine-area" id="turbineArea">
+                    <div class="clouds" aria-hidden="true">
+                        <span class="cloud cloud-1"></span>
+                        <span class="cloud cloud-2"></span>
+                    </div>
+
+                    <div class="wind-particles" aria-hidden="true">
+                        <span style="--y:18%;--t:3.2s;--d:0s"></span>
+                        <span style="--y:30%;--t:2.6s;--d:0.6s"></span>
+                        <span style="--y:42%;--t:3.8s;--d:1.2s"></span>
+                        <span style="--y:54%;--t:2.9s;--d:0.3s"></span>
+                        <span style="--y:66%;--t:3.4s;--d:1.6s"></span>
+                        <span style="--y:78%;--t:2.7s;--d:0.9s"></span>
+                    </div>
+
+                    <div class="fault-banner" id="faultBanner" hidden>
+                        SOBRETENSÃO — FALHA SIMULADA
+                    </div>
+
+                    <div
+                        id="turbine"
+                        class="turbine-3d"
+                        role="img"
+                        aria-label="Representação 3D simplificada do protótipo TerraByte"
+                    >
+                        <div class="tb-tower"></div>
+                        <div class="tb-nacelle"></div>
+                        <div class="tb-hub-wrap">
+                            <div class="turbine-rotor">
+                                <span class="tb-blade" style="--a:0deg"></span>
+                                <span class="tb-blade" style="--a:90deg"></span>
+                                <span class="tb-blade" style="--a:180deg"></span>
+                                <span class="tb-blade" style="--a:270deg"></span>
+                                <span class="tb-spinner"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grass-field" aria-hidden="true"></div>
+
+                    <div class="simulation-label">
+                        MODELO EDUCACIONAL · REPRESENTAÇÃO DIGITAL
+                    </div>
+                </div>
+
+                <div class="control-panel" id="controlPanel">
+                    <h2>Central de Controle</h2>
+
+                    <p class="lock-notice" id="lockNotice" hidden>
+                        Parâmetros bloqueados durante a simulação.
+                    </p>
+
+                    <div class="legend" aria-label="Legenda de rótulos">
+                        <span class="tag tag-real">DADO REAL</span>
+                        <span class="tag tag-sim">SIMULADO / ESTIMADO</span>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="voltage">
+                            Tensão aplicada (condição virtual)
+                        </label>
+
+                        <input
+                            type="range"
+                            id="voltage"
+                            min="0"
+                            max="3"
+                            value="1.5"
+                            step="0.1"
+                        >
+
+                        <p>
+                            <strong id="voltageValue">1,5</strong> V
+                            <span class="tag tag-real" id="voltageTag">DADO REAL DO PROTÓTIPO</span>
+                        </p>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="windSpeed">
+                            Velocidade do vento
+                        </label>
+
+                        <input
+                            type="range"
+                            id="windSpeed"
+                            min="0"
+                            max="25"
+                            value="12"
+                            step="0.1"
+                        >
+
+                        <p>
+                            <strong id="windValue">12,0</strong> m/s
+                        </p>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="rotorArea">
+                            Área varrida pelo rotor
+                        </label>
+
+                        <input
+                            type="range"
+                            id="rotorArea"
+                            min="1"
+                            max="100"
+                            value="50"
+                            step="1"
+                        >
+
+                        <p>
+                            <strong id="areaValue">50</strong> m²
+                        </p>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="efficiency">
+                            Eficiência do sistema
+                        </label>
+
+                        <input
+                            type="range"
+                            id="efficiency"
+                            min="10"
+                            max="100"
+                            value="80"
+                            step="1"
+                        >
+
+                        <p>
+                            <strong id="efficiencyValue">80</strong> %
+                        </p>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="simulationTime">
+                            Tempo da simulação
+                        </label>
+
+                        <input
+                            type="range"
+                            id="simulationTime"
+                            min="1"
+                            max="60"
+                            value="1"
+                            step="1"
+                        >
+
+                        <p>
+                            <strong id="timeValue">1</strong> min
+                        </p>
+                    </div>
+
+                    <div class="simulation-controls">
+                        <button id="startButton" type="button">
+                            INICIAR SIMULAÇÃO
+                        </button>
+
+                        <button
+                            id="resetButton"
+                            class="btn-secondary"
+                            type="button"
+                        >
+                            RESETAR
+                        </button>
+
+                        <button
+                            id="returnRealButton"
+                            class="btn-secondary"
+                            type="button"
+                        >
+                            VOLTAR A 1,5 V (REAL)
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- INDICADORES -->
+            <section class="data-panel" aria-label="Dados da simulação">
+                <div class="data-card">
+                    <span>TENSÃO APLICADA</span>
+                    <strong id="voltageData">1,5 V</strong>
+                    <small class="tag-line" id="voltageDataTag">DADO REAL DO PROTÓTIPO</small>
+                </div>
+
+                <div class="data-card">
+                    <span>VELOCIDADE DO VENTO</span>
+                    <strong id="speedData">12,0 m/s</strong>
+                    <small class="tag-line">VALOR SIMULADO</small>
+                </div>
+
+                <div class="data-card">
+                    <span>ROTAÇÃO</span>
+                    <strong id="rpmData">0 RPM</strong>
+                    <small class="tag-line">RPM ESTIMADA / SIMULADA</small>
+                </div>
+
+                <div class="data-card">
+                    <span>ÁREA DO ROTOR</span>
+                    <strong id="areaData">50 m²</strong>
+                </div>
+
+                <div class="data-card">
+                    <span>POTÊNCIA TEÓRICA</span>
+                    <strong id="theoreticalPowerData">0,00 kW</strong>
+                    <small class="tag-line">ESTIMADA (FÓRMULA)</small>
+                </div>
+
+                <div class="data-card">
+                    <span>POTÊNCIA CONSIDERADA</span>
+                    <strong id="powerData">0,00 kW</strong>
+                    <small class="tag-line" id="powerLimitNote" hidden>Limitada pela potência nominal de 1 kW</small>
+                </div>
+
+                <div class="data-card">
+                    <span>ENERGIA ESTIMADA</span>
+                    <strong id="energyData">0,000 kWh</strong>
+                </div>
+
+                <div class="data-card">
+                    <span>EFICIÊNCIA</span>
+                    <strong id="efficiencyData">80 %</strong>
+                </div>
+
+                <div class="data-card">
+                    <span>TEMPO</span>
+                    <strong id="timeData">1 min</strong>
+                </div>
+
+                <div class="data-card">
+                    <span>CONDIÇÃO DO VENTO</span>
+                    <strong id="windStateData">MODERADO</strong>
+                </div>
+
+                <div class="data-card">
+                    <span>ESTADO DO SISTEMA</span>
+                    <strong id="systemState">PARADO</strong>
+                </div>
+            </section>
+
+            <!-- FLUXO DE ENERGIA -->
+            <section class="energy-flow" aria-label="Etapas da geração">
+                <div class="energy-step">
+                    <span aria-hidden="true">🌬️</span>
+                    <p>Vento</p>
+                </div>
+
+                <strong aria-hidden="true">→</strong>
+
+                <div class="energy-step">
+                    <span aria-hidden="true">🌀</span>
+                    <p>Turbina</p>
+                </div>
+
+                <strong aria-hidden="true">→</strong>
+
+                <div class="energy-step">
+                    <span aria-hidden="true">⚡</span>
+                    <p>Gerador</p>
+                </div>
+
+                <strong aria-hidden="true">→</strong>
+
+                <div class="energy-step">
+                    <span aria-hidden="true">🏙️</span>
+                    <p>Rede elétrica</p>
+                </div>
+            </section>
+
+            <p class="text-muted">
+                Os valores apresentados são estimativas produzidas por um
+                modelo matemático educacional. Não representam medições
+                de uma turbina real nem energia efetivamente fornecida à rede.
+            </p>
+        </section>
+
+        <!-- SEÇÃO 02: PESQUISA -->
+        <!-- SEÃ‡ÃƒO 02: SISTEMA FERROVIÃRIO -->
+<section class="railway-section" id="railwaySection" aria-labelledby="railwayTitle">
+    <div class="section-title">
+        <div class="section-number">02</div>
+        <div>
+            <span class="section-tag">INFRAESTRUTURA EXPERIMENTAL</span>
+            <h2 id="railwayTitle">Sistema Ferrovi&aacute;rio Experimental</h2>
+        </div>
+    </div>
+
+    <p class="railway-intro">
+        Representa&ccedil;&atilde;o digital simplificada do sistema ferrovi&aacute;rio utilizado como parte da
+        infraestrutura experimental do TerraByte. O trem de passageiros percorre o circuito preto com a
+        velocidade estimada do trem f&iacute;sico; a ferrovia amarela &eacute; a infraestrutura de servi&ccedil;o.
+    </p>
+
+    <div class="railway-panel">
+        <div class="railway-scene">
+            <svg class="railway-svg" id="railwaySvg" viewBox="0 0 1000 1000" role="img"
+                 aria-labelledby="railwaySvgTitle railwaySvgDesc">
+                <title id="railwaySvgTitle">Maquete ferrovi&aacute;ria do TerraByte</title>
+                <desc id="railwaySvgDesc">Vista superior da maquete. A ferrovia preta de passageiros forma um circuito quase circular no centro. A ferrovia amarela de servi&ccedil;o contorna as bordas da base, com um la&ccedil;o em volta da &aacute;rea verde central e uma rampa laranja diagonal que passa por cima do circuito preto. O trem de passageiros percorre a ferrovia preta.</desc>
+
+                <defs>
+                    <linearGradient id="rwBoard" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#d3c6a8"/>
+                        <stop offset="1" stop-color="#bcad8b"/>
+                    </linearGradient>
+                    <radialGradient id="rwGreen" cx=".5" cy=".42" r=".62">
+                        <stop offset="0" stop-color="#62b872"/>
+                        <stop offset="1" stop-color="#2f8447"/>
+                    </radialGradient>
+                    <pattern id="rwGrass" width="14" height="14" patternUnits="userSpaceOnUse">
+                        <circle cx="3" cy="4" r="1.2" fill="#7ccb87" opacity=".55"/>
+                        <circle cx="10" cy="9" r="1.3" fill="#256f3a" opacity=".45"/>
+                        <circle cx="6" cy="12" r="1" fill="#6fbf7c" opacity=".5"/>
+                    </pattern>
+                    <linearGradient id="rwBoilerShade" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#8f1d17"/>
+                        <stop offset=".38" stop-color="#d63a2e"/>
+                        <stop offset=".52" stop-color="#e34a3c"/>
+                        <stop offset="1" stop-color="#7a1712"/>
+                    </linearGradient>
+                    <!-- Trilhos pretos: duas linhas paralelas (traco largo menos traco estreito). -->
+                    <mask id="rwPassengerRailMask" maskUnits="userSpaceOnUse" x="0" y="0" width="1000" height="1000">
+                        <use href="#passengerRailwayPath" fill="none" stroke="#fff" stroke-width="22"/>
+                        <use href="#passengerRailwayPath" fill="none" stroke="#000" stroke-width="13"/>
+                    </mask>
+                </defs>
+
+                <!-- GEOMETRIA (fonte matematica dos percursos; nao desenha nada) -->
+                <g class="rw-geometry" fill="none">
+                    <path id="passengerRailwayPath" d="M500 172 C678 172 830 322 832 498 C830 684 682 830 498 828 C314 826 166 686 168 502 C170 318 316 174 500 172 Z"/>
+                    <path id="serviceRailwayPath" d="M170 150 C270 130 360 160 470 120 C580 80 660 160 760 125 C820 105 870 150 880 205 C890 290 850 340 880 420 C905 490 860 540 885 620 C905 690 870 750 890 820 C895 880 850 905 790 895 C700 880 620 930 520 905 C420 880 340 935 250 905 C190 885 140 880 110 835 C80 780 125 720 95 650 C70 580 120 520 95 440 C75 370 120 310 95 240 C85 190 120 160 170 150 Z"/>
+                    <path id="serviceLoopPath" d="M365 500 A135 135 0 1 1 635 500 A135 135 0 1 1 365 500 Z"/>
+                    <path id="serviceBridgePath" d="M500 635 C535 635 560 665 600 705 L790 893"/>
+                    <path id="serviceSpurPath" d="M172 150 C150 142 138 130 132 116"/>
+                </g>
+
+                <!-- 1. CENARIO / TERRENO -->
+                <rect class="rw-board" x="40" y="40" width="920" height="920" rx="16"/>
+                <rect class="rw-board-inset" x="52" y="52" width="896" height="896" rx="10"/>
+
+                <!-- 2. AREA VERDE CENTRAL -->
+                <circle class="rw-green" cx="500" cy="500" r="110"/>
+                <circle class="rw-green-grass" cx="500" cy="500" r="110"/>
+                <g class="rw-plane" transform="translate(500 500) rotate(24)" aria-hidden="true">
+                    <path d="M0 -24 L5 -7 L27 6 L27 11 L5 6 L3 20 L11 25 L11 28 L0 26 L-11 28 L-11 25 L-3 20 L-5 6 L-27 11 L-27 6 L-5 -7 Z"/>
+                </g>
+
+                <!-- 3. FERROVIA AMARELA (SERVICO) -->
+                <g class="rw-s-shadow">
+                    <use href="#serviceRailwayPath"/><use href="#serviceLoopPath"/><use href="#serviceSpurPath"/>
+                </g>
+                <g class="rw-s-edge">
+                    <use href="#serviceRailwayPath"/><use href="#serviceLoopPath"/><use href="#serviceSpurPath"/>
+                </g>
+                <g class="rw-s-body">
+                    <use href="#serviceRailwayPath"/><use href="#serviceLoopPath"/><use href="#serviceSpurPath"/>
+                </g>
+                <g class="rw-s-slots">
+                    <use href="#serviceRailwayPath"/><use href="#serviceLoopPath"/>
+                </g>
+
+                <!-- 4. FERROVIA PRETA (PASSAGEIROS) -->
+                <use href="#passengerRailwayPath" class="rw-p-shadow"/>
+                <use href="#passengerRailwayPath" class="rw-p-bed"/>
+                <use href="#passengerRailwayPath" class="rw-p-sleepers"/>
+                <use href="#passengerRailwayPath" class="rw-p-rails" mask="url(#rwPassengerRailMask)"/>
+
+                <!-- 5. CENARIO DE SERVICO (estatico) -->
+                <g class="rw-tower" aria-hidden="true">
+                    <circle class="rw-tower-pad" cx="128" cy="112" r="27"/>
+                    <circle class="rw-tower-pad-inner" cx="128" cy="112" r="17"/>
+                    <circle class="rw-tower-pole" cx="128" cy="112" r="4.5"/>
+                    <path class="rw-tower-flag" d="M128 112 L160 100 L152 114 Z"/>
+                </g>
+                <g class="rw-station" transform="translate(150 880) rotate(35)" aria-hidden="true">
+                    <rect class="rw-station-pad" x="-36" y="-24" width="72" height="48" rx="12"/>
+                    <rect class="rw-station-roof" x="-20" y="-11" width="40" height="22" rx="7"/>
+                </g>
+                <g class="rw-parked" aria-hidden="true">
+                    <g data-service-progress="0.020" class="rw-parked-green"><rect x="-19" y="-8" width="38" height="16" rx="5"/><circle cx="10" cy="0" r="3.4"/></g>
+                    <g data-service-progress="0.042" class="rw-parked-red"><rect x="-19" y="-8" width="38" height="16" rx="5"/><circle cx="10" cy="0" r="3.4"/></g>
+                    <g data-service-progress="0.256" class="rw-parked-blue"><rect x="-19" y="-8" width="38" height="16" rx="5"/><circle cx="10" cy="0" r="3.4"/></g>
+                </g>
+
+                <!-- 6. TREM DE PASSAGEIROS (passa por baixo da ponte) -->
+                <g id="passengerTrain" class="passenger-train" aria-hidden="true">
+                    <!-- Locomotiva a vapor (frente = +x) -->
+                    <g id="passengerTrainLocomotive" data-train-car="locomotive" data-length="58">
+                        <rect class="rw-chassis" x="-28" y="-7.5" width="56" height="15" rx="3"/>
+                        <rect class="rw-rod" x="-19" y="-10.2" width="10" height="3.4" rx="1.2"/>
+                        <rect class="rw-rod" x="-4" y="-10.2" width="10" height="3.4" rx="1.2"/>
+                        <rect class="rw-rod" x="11" y="-10.2" width="10" height="3.4" rx="1.2"/>
+                        <rect class="rw-rod" x="-19" y="6.8" width="10" height="3.4" rx="1.2"/>
+                        <rect class="rw-rod" x="-4" y="6.8" width="10" height="3.4" rx="1.2"/>
+                        <rect class="rw-rod" x="11" y="6.8" width="10" height="3.4" rx="1.2"/>
+                        <rect class="rw-boiler" x="-4" y="-7.2" width="28" height="14.4" rx="7.2"/>
+                        <rect class="rw-band" x="2" y="-7.2" width="2" height="14.4"/>
+                        <rect class="rw-band" x="12" y="-7.2" width="2" height="14.4"/>
+                        <rect class="rw-smokebox" x="19" y="-7.2" width="10" height="14.4" rx="4.5"/>
+                        <circle class="rw-chimney-ring" cx="25" cy="0" r="4.7"/>
+                        <circle class="rw-chimney" cx="25" cy="0" r="2.6"/>
+                        <circle class="rw-dome" cx="8" cy="0" r="3"/>
+                        <rect class="rw-cab" x="-28" y="-9" width="25" height="18" rx="2.6"/>
+                        <rect class="rw-cab-roof" x="-26" y="-6.6" width="21" height="13.2" rx="2"/>
+                        <line class="rw-trim" x1="-26" y1="0" x2="-5" y2="0"/>
+                    </g>
+                    <!-- Tender -->
+                    <g id="passengerTrainTender" data-train-car="tender" data-length="34">
+                        <rect class="rw-coupling" x="17" y="-1.2" width="6" height="2.4"/>
+                        <rect class="rw-tender" x="-17" y="-8.5" width="34" height="17" rx="2.6"/>
+                        <rect class="rw-tender-lining" x="-15.5" y="-7" width="31" height="14" rx="2"/>
+                        <rect class="rw-tender-coal" x="-12" y="-5.2" width="21" height="10.4" rx="4"/>
+                    </g>
+                    <!-- Vagao 1 -->
+                    <g id="passengerTrainCoachA" data-train-car="coach" data-length="46">
+                        <rect class="rw-coupling" x="23" y="-1.2" width="6" height="2.4"/>
+                        <rect class="rw-coach" x="-23" y="-9" width="46" height="18" rx="3"/>
+                        <rect class="rw-coach-roof" x="-21" y="-7" width="42" height="14" rx="2.5"/>
+                        <line class="rw-trim" x1="-20" y1="0" x2="20" y2="0"/>
+                        <rect class="rw-vent" x="-12" y="-3.6" width="4" height="3"/>
+                        <rect class="rw-vent" x="-2" y="-3.6" width="4" height="3"/>
+                        <rect class="rw-vent" x="8" y="-3.6" width="4" height="3"/>
+                    </g>
+                    <!-- Vagao 2 -->
+                    <g id="passengerTrainCoachB" data-train-car="coach" data-length="46">
+                        <rect class="rw-coupling" x="23" y="-1.2" width="6" height="2.4"/>
+                        <rect class="rw-coach" x="-23" y="-9" width="46" height="18" rx="3"/>
+                        <rect class="rw-coach-roof" x="-21" y="-7" width="42" height="14" rx="2.5"/>
+                        <line class="rw-trim" x1="-20" y1="0" x2="20" y2="0"/>
+                        <rect class="rw-vent" x="-12" y="-3.6" width="4" height="3"/>
+                        <rect class="rw-vent" x="-2" y="-3.6" width="4" height="3"/>
+                        <rect class="rw-vent" x="8" y="-3.6" width="4" height="3"/>
+                    </g>
+                </g>
+
+                <!-- 7. PONTE / RAMPA DIAGONAL (por cima do circuito preto) -->
+                <g class="rw-b-shadow" transform="translate(9 12)"><use href="#serviceBridgePath"/></g>
+                <g class="rw-b-edge"><use href="#serviceBridgePath"/></g>
+                <g class="rw-b-body"><use href="#serviceBridgePath"/></g>
+                <g class="rw-b-slots"><use href="#serviceBridgePath"/></g>
+            </svg>
+        </div>
+
+        <ul class="railway-legend" aria-label="Legenda da maquete">
+            <li><span class="rw-swatch rw-swatch-passenger" aria-hidden="true"></span>Ferrovia preta &middot; passageiros</li>
+            <li><span class="rw-swatch rw-swatch-service" aria-hidden="true"></span>Ferrovia amarela &middot; servi&ccedil;o</li>
+            <li><span class="rw-swatch rw-swatch-bridge" aria-hidden="true"></span>Rampa/ponte diagonal</li>
+            <li><span class="rw-swatch rw-swatch-green" aria-hidden="true"></span>&Aacute;rea central</li>
+        </ul>
+
+        <div class="railway-controls" role="group" aria-label="Controles do trem de passageiros">
+            <button id="railwayStart" type="button">Iniciar</button>
+            <button id="railwayPause" class="btn-secondary" type="button" disabled>Pausar</button>
+            <button id="railwayContinue" class="btn-secondary" type="button" disabled>Continuar</button>
+            <button id="railwayReset" class="btn-secondary" type="button">Resetar</button>
+            <span class="tag tag-sim railway-state" id="railwayStatus" data-state="stopped" role="status" aria-live="polite">TREM PARADO</span>
+        </div>
+
+        <div class="railway-readouts">
+            <div class="data-panel" aria-label="Dados da ferrovia">
+                <div class="data-card">
+                    <span>VELOCIDADE ESTIMADA</span>
+                    <strong id="railwaySpeedValue">1,5 km/h</strong>
+                    <small class="tag-line">FAIXA ESTIMADA: 1&ndash;2 KM/H</small>
+                </div>
+                <div class="data-card">
+                    <span>CIRCUITO DE REFER&Ecirc;NCIA</span>
+                    <strong id="railwayCircuitLength">2,136 m</strong>
+                    <small class="tag-line">DERIVADO &middot; APROXIMA&Ccedil;&Atilde;O CIRCULAR</small>
+                </div>
+                <div class="data-card">
+                    <span>TEMPO DE VOLTA</span>
+                    <strong id="railwayLapTime">5,13 s</strong>
+                    <small class="tag-line">DERIVADO DA VELOCIDADE</small>
+                </div>
+                <div class="data-card">
+                    <span>DIST&Acirc;NCIA PERCORRIDA</span>
+                    <strong id="railwayDistance">0,00 m</strong>
+                    <small class="tag-line">VOLTAS: <span id="railwayLaps">0</span></small>
+                </div>
+            </div>
+
+            <details class="railway-assumptions">
+                <summary>Dados, estimativas e hip&oacute;teses desta representa&ccedil;&atilde;o</summary>
+                <ul>
+                    <li><span class="tag tag-real">DADO DO PROT&Oacute;TIPO</span><span>Trem: Expresso de Hogwarts (Candide). Circuito f&iacute;sico: aproximadamente 68 &times; 68 cm.</span></li>
+                    <li><span class="tag tag-sim">ESTIMATIVA</span><span>Velocidade do trem f&iacute;sico: 1&ndash;2 km/h, com refer&ecirc;ncia de 1,5 km/h (&asymp; 0,4167 m/s).</span></li>
+                    <li><span class="tag tag-sim">DERIVADO</span><span>Di&acirc;metro de 0,68 m e circunfer&ecirc;ncia &pi; &times; 0,68 &asymp; 2,136 m, por aproxima&ccedil;&atilde;o circular. Tempo de volta: 7,69 s a 1,0 km/h; 5,13 s a 1,5 km/h; 3,85 s a 2,0 km/h.</span></li>
+                    <li><span class="tag tag-visual">VISUAL</span><span>Forma dos trilhos, rampa, cen&aacute;rio e desenho do trem s&atilde;o uma reconstru&ccedil;&atilde;o estilizada. O circuito desenhado n&atilde;o &eacute; um c&iacute;rculo perfeito; o movimento usa o comprimento f&iacute;sico aproximado (2,136 m), n&atilde;o o comprimento do desenho. A ferrovia amarela ainda n&atilde;o tem trem de servi&ccedil;o.</span></li>
+                </ul>
+            </details>
+        </div>
+    </div>
+</section>
+<section class="research-section" id="researchSection">
+            <div class="section-title">
+                <div class="section-number">03</div>
+                <div>
+                    <span class="section-tag">PESQUISA</span>
+                    <h2>Energia Eólica</h2>
+                </div>
+            </div>
+
+            <article class="research-introduction">
+                <h3>O que é energia eólica?</h3>
+
+                <p>
+                    A energia eólica é uma forma de geração de energia que
+                    utiliza o movimento do ar para produzir eletricidade.
+                    O vento possui energia cinética, que pode ser capturada
+                    pelas pás de uma turbina.
+                </p>
+
+                <p>
+                    O movimento das pás produz energia mecânica de rotação.
+                    Essa energia é transmitida para um gerador, que realiza
+                    a conversão para energia elétrica.
+                </p>
+
+                <p>
+                    Por utilizar o vento, um recurso natural renovável,
+                    a energia eólica é considerada uma fonte renovável
+                    de energia.
+                </p>
+            </article>
+
+            <div class="research-grid">
+                <article class="research-card">
+                    <span class="research-number">01</span>
+                    <h3>Como o vento é formado?</h3>
+
+                    <p>
+                        O vento está relacionado principalmente ao
+                        aquecimento desigual da superfície terrestre
+                        pela radiação solar.
+                    </p>
+
+                    <p>
+                        Diferentes regiões recebem diferentes quantidades
+                        de energia. Isso produz diferenças de temperatura
+                        e pressão atmosférica.
+                    </p>
+
+                    <p>
+                        O deslocamento do ar entre regiões com diferentes
+                        pressões contribui para a formação dos ventos.
+                    </p>
+                </article>
+
+                <article class="research-card">
+                    <span class="research-number">02</span>
+                    <h3>Como funciona uma turbina?</h3>
+
+                    <p>
+                        O vento atinge as pás do rotor e provoca sua rotação.
+                    </p>
+
+                    <p>
+                        O movimento é transmitido através do sistema
+                        mecânico até o gerador elétrico.
+                    </p>
+
+                    <p>
+                        O gerador converte a energia mecânica em energia
+                        elétrica, que pode posteriormente ser enviada
+                        para a rede elétrica.
+                    </p>
+                </article>
+
+                <article class="research-card">
+                    <span class="research-number">03</span>
+                    <h3>Principais componentes</h3>
+
+                    <ul>
+                        <li><strong>Pás:</strong> capturam a energia do vento.</li>
+                        <li><strong>Rotor:</strong> conjunto responsável pela rotação.</li>
+                        <li><strong>Eixo:</strong> transmite o movimento.</li>
+                        <li><strong>Gerador:</strong> produz eletricidade.</li>
+                        <li><strong>Torre:</strong> sustenta o conjunto em altura.</li>
+                        <li><strong>Sistemas de controle:</strong> monitoram o funcionamento.</li>
+                    </ul>
+                </article>
+
+                <article class="research-card">
+                    <span class="research-number">04</span>
+                    <h3>Do vento à eletricidade</h3>
+
+                    <div class="research-flow">
+                        <span>Vento</span>
+                        <strong>→</strong>
+                        <span>Rotor</span>
+                        <strong>→</strong>
+                        <span>Gerador</span>
+                        <strong>→</strong>
+                        <span>Energia</span>
+                    </div>
+
+                    <p>
+                        A geração ocorre através de uma sequência de
+                        transformações energéticas.
+                    </p>
+
+                    <p>
+                        A energia cinética do vento é transformada em
+                        energia mecânica e posteriormente em energia elétrica.
+                    </p>
+                </article>
+
+                <article class="research-card research-highlight">
+                    <span class="research-number">05</span>
+                    <h3>A física da geração</h3>
+
+                    <p>
+                        A potência disponível no vento depende da densidade
+                        do ar, da área do rotor e da velocidade do vento.
+                    </p>
+
+                    <div class="formula">
+                        P = ½ × ρ × A × v³
+                    </div>
+
+                    <p>
+                        Na expressão, <strong>ρ</strong> representa a
+                        densidade do ar, <strong>A</strong> representa a
+                        área varrida pelo rotor e <strong>v</strong>
+                        representa a velocidade do vento.
+                    </p>
+
+                    <p>
+                        A velocidade possui grande influência porque aparece
+                        elevada ao cubo na fórmula.
+                    </p>
+                </article>
+
+                <article class="research-card">
+                    <span class="research-number">06</span>
+                    <h3>Eficiência e limite de Betz</h3>
+
+                    <p>
+                        Uma turbina não consegue retirar toda a energia
+                        cinética do vento.
+                    </p>
+
+                    <p>
+                        O chamado limite de Betz estabelece um limite
+                        teórico de aproximadamente <strong>59,3%</strong>
+                        para a quantidade máxima de potência do vento que
+                        uma turbina ideal pode extrair.
+                    </p>
+
+                    <p>
+                        Turbinas reais apresentam perdas aerodinâmicas,
+                        mecânicas e elétricas.
+                    </p>
+                </article>
+
+                <article class="research-card">
+                    <span class="research-number">07</span>
+                    <h3>Tipos de turbinas</h3>
+
+                    <p>
+                        Existem diferentes projetos de turbinas eólicas.
+                    </p>
+
+                    <ul>
+                        <li>
+                            <strong>Eixo horizontal:</strong> possuem o
+                            rotor orientado em relação à direção do vento
+                            e são muito utilizadas em parques eólicos.
+                        </li>
+                        <li>
+                            <strong>Eixo vertical:</strong> possuem o eixo
+                            de rotação disposto verticalmente.
+                        </li>
+                    </ul>
+                </article>
+
+                <article class="research-card">
+                    <span class="research-number">08</span>
+                    <h3>Fatores que influenciam a geração</h3>
+
+                    <ul>
+                        <li>Velocidade do vento;</li>
+                        <li>Área varrida pelas pás;</li>
+                        <li>Densidade do ar;</li>
+                        <li>Formato e aerodinâmica das pás;</li>
+                        <li>Eficiência do gerador;</li>
+                        <li>Perdas mecânicas e elétricas;</li>
+                        <li>Características do local.</li>
+                    </ul>
+                </article>
+
+                <article class="research-card">
+                    <span class="research-number">09</span>
+                    <h3>Vantagens da energia eólica</h3>
+
+                    <ul>
+                        <li>É uma fonte renovável.</li>
+                        <li>Não depende da queima de combustíveis durante a geração.</li>
+                        <li>Apresenta baixas emissões durante a operação.</li>
+                        <li>Pode ser utilizada em grande escala.</li>
+                        <li>Contribui para diversificar a matriz energética.</li>
+                    </ul>
+                </article>
+
+                <article class="research-card">
+                    <span class="research-number">10</span>
+                    <h3>Limitações e impactos</h3>
+
+                    <p>
+                        A produção de energia eólica depende das condições
+                        do vento e, por isso, pode variar ao longo do tempo.
+                    </p>
+
+                    <p>
+                        A instalação de parques eólicos também precisa
+                        considerar aspectos ambientais e territoriais,
+                        incluindo ocupação do espaço, ruído, paisagem e
+                        possíveis impactos sobre a fauna.
+                    </p>
+                </article>
+
+                <article class="research-card research-highlight">
+                    <span class="research-number">11</span>
+                    <h3>Energia eólica no Brasil</h3>
+
+                    <p>
+                        O Brasil possui regiões com condições favoráveis
+                        para a geração de energia eólica.
+                    </p>
+
+                    <p>
+                        O Nordeste possui grande destaque nesse setor
+                        devido às características dos regimes de vento
+                        encontrados em diversos locais da região.
+                    </p>
+
+                    <p>
+                        A energia eólica ocupa uma posição importante
+                        na matriz elétrica brasileira, contribuindo
+                        para a diversificação das fontes utilizadas no país.
+                    </p>
+                </article>
+
+                <article class="research-card">
+                    <span class="research-number">12</span>
+                    <h3>Energia e sustentabilidade</h3>
+
+                    <p>
+                        A energia eólica pode contribuir para reduzir
+                        a dependência de fontes fósseis e diversificar
+                        a produção de eletricidade.
+                    </p>
+
+                    <p>
+                        Entretanto, uma fonte renovável também precisa
+                        ser planejada de maneira responsável, considerando
+                        localização, construção, operação, transmissão
+                        e impactos ambientais.
+                    </p>
+                </article>
+            </div>
+
+            <article class="terra-relation">
+                <div>
+                    <span class="section-tag">APLICAÇÃO NO TERRABYTE</span>
+                    <h3>O que a simulação representa?</h3>
+
+                    <p>
+                        O simulador TerraByte utiliza algumas das principais
+                        relações estudadas na pesquisa.
+                    </p>
+
+                    <p>
+                        Ao modificar a velocidade do vento, a área do rotor
+                        e a eficiência, o usuário consegue observar como
+                        essas variáveis alteram a potência estimada e a
+                        energia calculada durante a simulação.
+                    </p>
+
+                    <p>
+                        O modelo é uma representação educacional. Uma
+                        turbina real possui diversos outros fatores,
+                        como aerodinâmica das pás, controle de rotação,
+                        perdas mecânicas, características do gerador,
+                        condições atmosféricas e transmissão elétrica.
+                    </p>
+                </div>
+
+                <div class="model-box">
+                    <span>MODELO UTILIZADO</span>
+
+                    <strong>
+                        P = ½ × ρ × A × v³ × Cp × η
+                    </strong>
+
+                    <small>
+                        Potência teórica considerando o coeficiente
+                        de potência e a eficiência do sistema. A potência
+                        considerada é limitada pela potência nominal do modelo.
+                    </small>
+
+                    <div class="premises">
+                        <strong>Premissas do modelo</strong>
+                        <ul>
+                            <li>Densidade do ar: ρ = 1,225 kg/m³</li>
+                            <li>Coeficiente de potência: Cp = 0,35</li>
+                            <li>Eficiência do sistema: η ajustável (padrão 80%)</li>
+                            <li>Limite de Betz: 59,3% (limite teórico)</li>
+                            <li>Potência nominal: 1 kW (limite adotado no modelo)</li>
+                            <li>Velocidade de partida: 1 m/s (premissa do modelo, não característica de uma turbina específica)</li>
+                            <li>Vento constante durante toda a simulação</li>
+                            <li>Tensão de 1,5 V: dado real informado para o protótipo. Não é tensão gerada nem potência de saída.</li>
+                            <li>RPM estimada: proporcional ao vento e à tensão em relação a 1,5 V (premissa visual do modelo, não medida)</li>
+                            <li>Sobretensão acima de 2,5 V: limite conceitual do modelo, não medido. Representa apenas o estado de falha virtual.</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <article class="research-conclusion">
+                <span class="section-tag">CONCLUSÃO</span>
+                <h3>O vento como fonte de energia</h3>
+
+                <p>
+                    A energia eólica demonstra como um fenômeno natural
+                    pode ser utilizado para produzir eletricidade através
+                    da aplicação de conhecimentos de física, engenharia
+                    e tecnologia.
+                </p>
+
+                <p>
+                    O TerraByte procura representar esse processo de maneira
+                    simples e interativa, permitindo observar a relação
+                    entre vento, movimento, potência e geração de energia.
+                </p>
+            </article>
+        </section>
+
+        <!-- SEÇÃO 03: EQUIPE -->
+        <section class="team-section" id="teamSection">
+            <div class="section-title">
+                <div class="section-number">04</div>
+                <div>
+                    <span class="section-tag">EQUIPE</span>
+                    <h2>Integrantes</h2>
+                </div>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <strong>Pedro Octávio</strong>
+                    <span>Software e Hardware</span>
+                </div>
+
+                <div class="team-card">
+                    <strong>Mariana</strong>
+                    <span>Pesquisa e Modelagem Física</span>
+                </div>
+
+                <div class="team-card">
+                    <strong>Thalita</strong>
+                    <span>Pesquisa e Modelagem Física</span>
+                </div>
+
+                <div class="team-card">
+                    <strong>Nicolas</strong>
+                    <span>Equipe TerraByte Elétrica</span>
+                </div>
+
+                <div class="team-card">
+                    <strong>Benjamim</strong>
+                    <span>Equipe TerraByte Elétrica</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 04: REFERÊNCIAS -->
+        <section class="references-section" id="referencesSection">
+            <div class="section-title">
+                <div class="section-number">05</div>
+                <div>
+                    <span class="section-tag">REFERÊNCIAS</span>
+                    <h2>Fontes de pesquisa</h2>
+                </div>
+            </div>
+
+            <div class="references-list">
+                <div class="reference-item">
+                    <strong>ONS</strong>
+                    <span>
+                        Operador Nacional do Sistema Elétrico.
+                        Informações sobre geração e operação do sistema
+                        elétrico brasileiro.
+                    </span>
+                </div>
+
+                <div class="reference-item">
+                    <strong>ANEEL</strong>
+                    <span>
+                        Agência Nacional de Energia Elétrica.
+                        Informações sobre geração de energia e fontes renováveis.
+                    </span>
+                </div>
+
+                <div class="reference-item">
+                    <strong>EPE</strong>
+                    <span>
+                        Empresa de Pesquisa Energética.
+                        Estudos sobre energia, eletricidade e matriz energética brasileira.
+                    </span>
+                </div>
+
+                <div class="reference-item">
+                    <strong>Centros universitários e de pesquisa</strong>
+                    <span>
+                        Materiais acadêmicos utilizados como apoio aos
+                        conceitos físicos e tecnológicos apresentados.
+                    </span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- JANELA DE CONCLUSÃO DA SIMULAÇÃO -->
+    <div
+        class="modal-overlay"
+        id="completionModal"
+        aria-hidden="true"
+        hidden
+    >
+        <div
+            class="modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modalTitle"
+        >
+            <button
+                type="button"
+                class="modal-close"
+                id="closeModal"
+                aria-label="Fechar janela"
+            >×</button>
+
+            <h3 id="modalTitle">Sua simulação terminou!</h3>
+
+            <div class="modal-content">
+                <p>
+                    <span>Tempo total:</span>
+                    <strong id="modalTime">0 min 00 s</strong>
+                </p>
+
+                <p>
+                    <span>Eficiência:</span>
+                    <strong id="modalEfficiency">80 %</strong>
+                </p>
+
+                <p>
+                    <span>Tempo de pausas:</span>
+                    <strong id="modalPauses">0 min 00 s</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>TerraByte • Protótipo 000</p>
+        <p>Projeto educacional de tecnologia e energia eólica</p>
+        <p>Powered by Octo Studios</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="railway/railway.js"></script>
+</body>
+</html>

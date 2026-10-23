@@ -1,0 +1,110 @@
+/* TerraByte | Subsistema ferroviario.
+   Usa os tokens visuais do style.css (--glass-border, --shadow-strong, --aero-*).
+   Cores de maquete (trilhos, trem, cenario) sao "tinta" da reconstrucao e ficam
+   restritas ao SVG; a interface em volta segue a identidade do TerraByte. */
+
+.railway-section{scroll-margin-top:24px}
+.railway-intro{max-width:940px;margin:0 0 18px;color:var(--aero-text-light)}
+
+.railway-panel{overflow:hidden;border:1px solid var(--glass-border);border-radius:var(--radius-large);background:linear-gradient(145deg,rgba(255,255,255,.82),rgba(226,250,255,.55));box-shadow:var(--shadow-strong)}
+.railway-scene{display:flex;justify-content:center;padding:clamp(10px,2vw,22px);background:linear-gradient(145deg,rgba(255,255,255,.45),rgba(200,244,255,.25))}
+
+/* SVG responsivo: proporcao fixa pelo viewBox, altura limitada pela janela. */
+.railway-svg{display:block;width:min(100%,78vh);max-width:100%;height:auto}
+
+/* ---------- Terreno ---------- */
+.rw-board{fill:url(#rwBoard);stroke:#8f7f5d;stroke-width:3;filter:drop-shadow(0 10px 14px rgba(19,112,156,.18))}
+.rw-board-inset{fill:none;stroke:rgba(255,255,255,.35);stroke-width:2;stroke-dasharray:2 9;stroke-linecap:round}
+
+/* ---------- Area verde central ---------- */
+.rw-green{fill:url(#rwGreen);stroke:#256f3a;stroke-width:3}
+.rw-green-grass{fill:url(#rwGrass);pointer-events:none}
+.rw-plane path{fill:#f6f9fa;stroke:#aebcc2;stroke-width:1.4;stroke-linejoin:round;filter:drop-shadow(2px 3px 2px rgba(0,0,0,.28))}
+
+/* ---------- Ferrovia amarela (servico) ----------
+   Camadas, de baixo para cima: sombra, borda, corpo, aberturas do leito. */
+.rw-s-shadow,.rw-b-shadow{fill:none;stroke:rgba(70,52,22,.30);stroke-width:34;stroke-linejoin:round;stroke-linecap:round}
+.rw-s-shadow{transform:translate(4px,6px)}
+.rw-s-edge{fill:none;stroke:#cf9f10;stroke-width:30;stroke-linejoin:round;stroke-linecap:round}
+.rw-s-body{fill:none;stroke:#f3c81f;stroke-width:23;stroke-linejoin:round;stroke-linecap:round}
+.rw-s-slots{fill:none;stroke:#c99a10;stroke-width:12;stroke-dasharray:6 6}
+
+/* ---------- Ferrovia preta (passageiros) ---------- */
+.rw-p-shadow{fill:none;stroke:rgba(40,36,30,.28);stroke-width:36;stroke-linejoin:round;transform:translate(4px,6px)}
+.rw-p-bed{fill:none;stroke:#8e897d;stroke-width:34;stroke-linejoin:round}
+.rw-p-sleepers{fill:none;stroke:#3f3832;stroke-width:28;stroke-dasharray:3.2 7.2;stroke-linejoin:round}
+.rw-p-rails{fill:none;stroke:#141a1e;stroke-width:22;stroke-linejoin:round}
+
+/* ---------- Ponte / rampa diagonal ---------- */
+.rw-b-shadow{stroke:rgba(60,40,20,.34);stroke-linecap:butt}
+.rw-b-edge{fill:none;stroke:#b25d1c;stroke-width:32;stroke-linejoin:round;stroke-linecap:butt}
+.rw-b-body{fill:none;stroke:#ee8b3e;stroke-width:25;stroke-linejoin:round;stroke-linecap:butt}
+.rw-b-slots{fill:none;stroke:#c76a26;stroke-width:13;stroke-dasharray:5 6}
+
+/* ---------- Cenario de servico (estatico) ---------- */
+.rw-tower-pad{fill:#cf9f10}
+.rw-tower-pad-inner{fill:#f3c81f}
+.rw-tower-pole{fill:#ffffff;stroke:#9fb3bb;stroke-width:1.2}
+.rw-tower-flag{fill:#2f9bd8}
+.rw-station-pad{fill:#4a9a5a;stroke:#2f6e40;stroke-width:2}
+.rw-station-roof{fill:#b8efcb;stroke:#6fb98a;stroke-width:2}
+.rw-parked rect{stroke:rgba(0,0,0,.35);stroke-width:1.4}
+.rw-parked circle{fill:rgba(255,255,255,.75)}
+.rw-parked-green rect{fill:#4cae5b}
+.rw-parked-red rect{fill:#c93a2e}
+.rw-parked-blue rect{fill:#2f86d4}
+
+/* ---------- Trem de passageiros (inspirado no Expresso de Hogwarts de brinquedo) ----------
+   Vista superior; frente do trem = +x. */
+.passenger-train{pointer-events:none}
+.passenger-train>g{filter:drop-shadow(1.5px 2.5px 1.5px rgba(0,0,0,.38))}
+.rw-chassis{fill:#1d1d22}
+.rw-rod{fill:#2c2c33;stroke:#0f0f13;stroke-width:.6}
+.rw-boiler{fill:url(#rwBoilerShade);stroke:#6e130f;stroke-width:.8}
+.rw-band{fill:#d9a93a}
+.rw-smokebox{fill:#202026;stroke:#0f0f13;stroke-width:.8}
+.rw-chimney-ring{fill:#3a3a42}
+.rw-chimney{fill:#0d0d10}
+.rw-dome{fill:#e2b44a;stroke:#9c7420;stroke-width:.8}
+.rw-cab{fill:#7c1712;stroke:#4f0e0b;stroke-width:.8}
+.rw-cab-roof{fill:#a51f19}
+.rw-trim{stroke:#d9a93a;stroke-width:1.1;stroke-linecap:round}
+.rw-tender{fill:#1d1d22;stroke:#0f0f13;stroke-width:.8}
+.rw-tender-lining{fill:none;stroke:#b3261e;stroke-width:1.2}
+.rw-tender-coal{fill:#34343b}
+.rw-coach{fill:#7c1712;stroke:#4f0e0b;stroke-width:.8}
+.rw-coach-roof{fill:#a51f19}
+.rw-vent{fill:#7c1712}
+.rw-coupling{fill:#15151a}
+
+/* ---------- Legenda ---------- */
+.railway-legend{display:flex;flex-wrap:wrap;gap:8px 20px;margin:0;padding:14px clamp(16px,3vw,28px) 4px;list-style:none;color:var(--aero-text-light);font-size:.88rem}
+.railway-legend li{display:inline-flex;align-items:center;gap:8px}
+.rw-swatch{display:inline-block;width:26px;height:8px;border-radius:4px;border:1px solid rgba(255,255,255,.9);box-shadow:0 1px 3px rgba(12,100,140,.2)}
+.rw-swatch-passenger{background:#141a1e}
+.rw-swatch-service{background:#f3c81f}
+.rw-swatch-bridge{background:#ee8b3e}
+.rw-swatch-green{background:#3f9a56}
+
+/* ---------- Controles ---------- */
+.railway-controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:14px clamp(16px,3vw,28px) 18px}
+.railway-state{margin-left:auto;font-size:.74rem;padding:5px 12px}
+.railway-state[data-state="running"]{color:#17703f;background:rgba(140,230,189,.55)}
+.railway-state[data-state="paused"]{color:#8a4b00;background:rgba(255,226,160,.6)}
+.tag-visual{color:#4a5f69;background:rgba(190,205,212,.5)}
+
+/* ---------- Indicadores (reaproveita .data-panel / .data-card do TerraByte) ---------- */
+.railway-readouts{padding:0 clamp(16px,3vw,28px) clamp(16px,3vw,24px);border-top:1px solid rgba(62,156,190,.16)}
+.railway-readouts .data-panel{margin:18px 0 0}
+.railway-readouts .data-card strong{font-variant-numeric:tabular-nums}
+
+.railway-assumptions{margin-top:16px;padding:12px 16px;border:1px solid rgba(255,255,255,.9);border-radius:var(--radius-medium);background:rgba(255,255,255,.6);box-shadow:var(--shadow-soft);color:var(--aero-text-light);font-size:.92rem}
+.railway-assumptions summary{cursor:pointer;color:#087eae;font-weight:700}
+.railway-assumptions ul{margin:12px 0 2px;padding:0;list-style:none;display:grid;gap:10px}
+.railway-assumptions li{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px}
+.railway-assumptions li>span:last-child{flex:1 1 260px;min-width:0}
+
+@media(max-width:560px){
+    .railway-controls button{flex:1 1 40%}
+    .railway-state{margin-left:0;flex-basis:100%;text-align:center}
+}
