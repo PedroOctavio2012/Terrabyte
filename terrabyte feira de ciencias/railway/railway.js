@@ -2,7 +2,7 @@
    TERRABYTE | SISTEMA FERROVIARIO EXPERIMENTAL
    Modulo isolado: nao le nem altera nada da simulacao da turbina.
    Unica interface publica: window.TerraByteRailway
-
+ 
    ORIGEM DE CADA VALOR (nao ha fator de escala escondido):
    1. DADO FISICO CONHECIDO  - trem e medida aproximada do circuito
    2. ESTIMATIVA             - velocidade do trem fisico (1 a 2 km/h)
@@ -289,16 +289,16 @@
 
     // Posicao (numeracao da planta) e identidade (catalogo oficial). Nada aqui e inventado.
     const CATALOG = [
-        { id: "thomas", name: "Thomas", num: "Nº 1", tb: "TB-VEH-001", code: "J06A", photo: "1", kind: "loco", label: "Thomas", c: "#2f86d4", c2: "#1b5a9a", x: 771, y: 161, a: 40, rail: true, ring: 160, func: "Operação ferroviária na área azul/água" },
-        { id: "diesel", name: "Diesel", num: "Nº 10", tb: "TB-VEH-010", code: "F4DA", photo: "4 (inferior)", kind: "loco", label: "Diesel", c: "#2a2a30", c2: "#b3261e", x: 118, y: 868, a: -55, rail: true, ring: 200, func: "Transporte ferroviário ligado à extração" },
-        { id: "byron", name: "Byron", num: "Nº 18", tb: "TB-VEH-018", code: "329 8 SR00", photo: "2", kind: "dozer", label: "Byron", c: "#f3c81f", c2: "#3a3a40", x: 430, y: 212, a: 10, ring: 340, turb: 80, func: "Preparação, movimentação e nivelamento do terreno" },
-        { id: "george", name: "George", num: "", tb: "TB-VEH-019", code: "326 SR00", photo: "9", kind: "roller", label: "George", c: "#4cae5b", c2: "#2f7a3c", x: 170, y: 78, a: 0, ring: 300, turb: 140, func: "Compactação e nivelamento" },
-        { id: "kevin", name: "Kevin, Sodor Works", num: "", tb: "TB-VEH-020", code: "Sodor Works R9038", photo: "4 (superior)", kind: "crane", label: "Kevin", c: "#e8b21d", c2: "#a37a0c", x: 215, y: 140, a: -10, ring: 240, turb: 200, func: "Estação de descarga e manuseio de materiais" },
-        { id: "winston", name: "Winston", num: "", tb: "TB-VEH-022", code: "H29A", photo: "8", kind: "car", label: "Winston", c: "#d33a2e", c2: "#ffffff", x: 419, y: 818, a: 0, func: "Inspeção terrestre; transporta Sir Topham Hatt" },
-        { id: "jack13", name: "Jack, 2013", num: "Nº 11", tb: "TB-VEH-023", code: "119 9 SR00", photo: "5", kind: "loader", label: "Jack 11 (2013)", c: "#c93a2e", c2: "#2a2a30", x: 713, y: 610, a: 125, ring: 120, turb: 260, viaRamp: true, func: "Carregamento e movimentação de materiais" },
-        { id: "jack16", name: "Jack, 2016", num: "Nº 11", tb: "TB-VEH-024", code: "J47A", photo: "6", kind: "loader", label: "Jack 11 (2016)", c: "#d9463a", c2: "#2a2a30", x: 880, y: 673, a: 90, ring: 60, turb: 320, track: true, func: "Segunda unidade física de carregamento" },
-        { id: "henry", name: "Henry", num: "Nº 3", tb: "TB-VEH-025", code: "G05A", photo: "3", kind: "loco", label: "Henry", c: "#2e9a52", c2: "#1f6e3a", x: 760, y: 404, a: 100, ring: 20, turb: 20, func: "Operação ferroviária próxima à turbina" },
-        { id: "harold", name: "Harold", num: "", tb: "TB-VEH-026", code: "H15A", photo: "10", kind: "heli", label: "Harold", c: "#f4f4f4", c2: "#c93a2e", x: 500, y: 500, a: 24, func: "Inspeção e apoio aéreo" },
+        { id: "thomas", name: "Thomas", num: "Nº 1", tb: "TB-VEH-001", code: "J06A", photo: "1", kind: "loco", label: "Thomas", c: "#2f86d4", c2: "#1b5a9a", x: 771, y: 161, a: 40, rail: true, ring: 90, turb: 35, func: "Transporte ferroviário de matéria-prima" },
+        { id: "diesel", name: "Diesel", num: "Nº 10", tb: "TB-VEH-010", code: "F4DA", photo: "4 (inferior)", kind: "loco", label: "Diesel", c: "#2a2a30", c2: "#b3261e", x: 118, y: 868, a: -55, rail: true, ring: 200, turb: 120, func: "Locomotiva ferroviária de logística" },
+        { id: "byron", name: "Byron", num: "Nº 18", tb: "TB-VEH-018", code: "329 8 SR00", photo: "2", kind: "dozer", label: "Byron", c: "#f3c81f", c2: "#3a3a40", x: 430, y: 212, a: 10, ring: 340, func: "Preparação do terreno e nivelamento" },
+        { id: "george", name: "George", num: "", tb: "TB-VEH-019", code: "326 SR00", photo: "9", kind: "roller", label: "George", c: "#4cae5b", c2: "#2f7a3c", x: 170, y: 78, a: 0, ring: 300, turb: 125, func: "Compactação e acabamento da estrada" },
+        { id: "kevin", name: "Kevin, Sodor Works", num: "", tb: "TB-VEH-020", code: "Sodor Works R9038", photo: "4 (superior)", kind: "crane", label: "Kevin", c: "#e8b21d", c2: "#a37a0c", x: 215, y: 357, a: 40, func: "Organização de materiais e suprimentos" },
+        { id: "winston", name: "Winston", num: "", tb: "TB-VEH-022", code: "H29A", photo: "8", kind: "car", label: "Winston", c: "#d33a2e", c2: "#ffffff", x: 419, y: 818, a: 0, func: "Inspeção terrestre" },
+        { id: "jack13", name: "Jack, 2013", num: "Nº 11", tb: "TB-VEH-023", code: "119 9 SR00", photo: "5", kind: "loader", label: "Jack 11 (2013)", c: "#c93a2e", c2: "#2a2a30", x: 713, y: 610, a: 90, ring: 120, func: "Transporte e empilhamento de cascalho" },
+        { id: "jack16", name: "Jack, 2016", num: "Nº 11", tb: "TB-VEH-024", code: "J47A", photo: "6", kind: "loader", label: "Jack 11 (2016)", c: "#d9463a", c2: "#2a2a30", x: 880, y: 673, a: 90, ring: 180, func: "Transporte e empilhamento de cascalho" },
+        { id: "henry", name: "Henry", num: "Nº 3", tb: "TB-VEH-025", code: "G05A", photo: "3", kind: "loco", label: "Henry", c: "#2e9a52", c2: "#1f6e3a", x: 760, y: 404, a: 100, ring: 20, turb: 20, rail: true, func: "Transporte pesado ferroviário" },
+        { id: "harold", name: "Harold", num: "", tb: "TB-VEH-026", code: "H15A", photo: "10", kind: "heli", label: "Harold", c: "#f4f4f4", c2: "#c93a2e", x: 500, y: 500, a: 24, func: "Inspeção aérea" },
         { id: "hogwarts", name: "Expresso Hogwarts", num: "", tb: "TB-VEH-027", code: "Candide 37000", photo: "11", kind: null, func: "Composição ferroviária especial (trem de passageiros)" }
     ];
 
@@ -313,13 +313,13 @@
     function vehicleMarkup(s) {
         const c = s.c, k = s.c2, d = "#26262b";
         switch (s.kind) {
-            case "loco": return `<rect x="-20" y="-8" width="40" height="16" rx="4" fill="${c}"/><rect x="-20" y="-8" width="13" height="16" rx="3" fill="${k}"/><rect x="-5" y="-6" width="20" height="12" rx="6" fill="${c}"/><circle cx="12" cy="0" r="3.6" fill="${d}"/><rect x="-3" y="-1" width="14" height="2" fill="${k}"/>`;
-            case "dozer": return `<rect x="-18" y="-11" width="34" height="5" rx="2" fill="${k}"/><rect x="-18" y="6" width="34" height="5" rx="2" fill="${k}"/><rect x="-14" y="-7" width="26" height="14" rx="3" fill="${c}"/><rect x="-12" y="-5" width="10" height="10" rx="2" fill="${k}"/><rect x="16" y="-12" width="5" height="24" rx="1.5" fill="#555"/>`;
-            case "roller": return `<rect x="-24" y="-9" width="8" height="18" rx="3" fill="#8c969a"/><rect x="-20" y="-7" width="26" height="14" rx="3" fill="${c}"/><rect x="-16" y="-5" width="10" height="10" rx="2" fill="${k}"/><rect x="6" y="-10" width="13" height="20" rx="4" fill="#9aa4a8"/>`;
-            case "loader": return `<rect x="-16" y="-9" width="6" height="4" fill="${k}"/><rect x="-16" y="5" width="6" height="4" fill="${k}"/><rect x="2" y="-9" width="6" height="4" fill="${k}"/><rect x="2" y="5" width="6" height="4" fill="${k}"/><rect x="-15" y="-7" width="26" height="14" rx="3" fill="${c}"/><rect x="-11" y="-5" width="9" height="10" rx="2" fill="${k}"/><path d="M10 -9 L23 -12 L23 12 L10 9 Z" fill="#454548"/>`;
-            case "crane": return `<rect x="-16" y="-9" width="30" height="18" rx="3" fill="${c}"/><rect x="-13" y="-6" width="11" height="12" rx="2" fill="${k}"/><g class="rw-arm"><rect x="0" y="-3" width="32" height="6" rx="2" fill="${k}"/><circle cx="32" cy="0" r="3" fill="${d}"/></g>`;
-            case "car": return `<rect x="-15" y="-8" width="30" height="16" rx="6" fill="${c}"/><rect x="-6" y="-8" width="8" height="16" fill="${k}"/><rect x="5" y="-6" width="5" height="12" rx="1.5" fill="#bfe6f5"/><ellipse cx="-2" cy="0" rx="5" ry="6.4" fill="#26262b"/><circle cx="-2" cy="0" r="2.6" fill="#e8c9a0"/>`;
-            case "heli": return `<ellipse cx="0" cy="0" rx="14" ry="6" fill="${c}"/><rect x="-32" y="-1.5" width="19" height="3" fill="${c}"/><circle cx="-32" cy="0" r="3" fill="${k}"/><rect x="2" y="-4" width="9" height="8" rx="3" fill="#bfe6f5"/><g class="rw-heli-rotor"><rect x="-24" y="-1.3" width="48" height="2.6" rx="1.3"/><rect x="-1.3" y="-24" width="2.6" height="48" rx="1.3"/></g>`;
+            case "loco": return `<rect x="-20" y="-8" width="40" height="16" rx="4" fill="${c}"/><rect x="-20" y="-8" width="13" height="16" rx="3" fill="${k}"/><rect x="-5" y="-6" width="20" height="12" rx="2" fill="${d}"/><rect x="16" y="-9" width="6" height="18" rx="2" fill="${k}"/><circle cx="-13" cy="9" r="3" fill="#111"/><circle cx="13" cy="9" r="3" fill="#111"/>`;
+            case "dozer": return `<rect x="-18" y="-11" width="34" height="5" rx="2" fill="${k}"/><rect x="-18" y="6" width="34" height="5" rx="2" fill="${k}"/><rect x="-14" y="-7" width="26" height="14" rx="3" fill="${c}"/><rect x="-1" y="-12" width="6" height="24" rx="2" fill="${k}"/>`;
+            case "roller": return `<rect x="-24" y="-9" width="8" height="18" rx="3" fill="#8c969a"/><rect x="-20" y="-7" width="26" height="14" rx="3" fill="${c}"/><rect x="-16" y="-5" width="10" height="10" rx="2" fill="${k}"/><circle cx="-11" cy="11" r="2.5" fill="#111"/><circle cx="9" cy="11" r="2.5" fill="#111"/>`;
+            case "loader": return `<rect x="-16" y="-9" width="6" height="4" fill="${k}"/><rect x="-16" y="5" width="6" height="4" fill="${k}"/><rect x="2" y="-9" width="6" height="4" fill="${k}"/><rect x="2" y="5" width="6" height="4" fill="${k}"/><rect x="-14" y="-8" width="24" height="16" rx="3" fill="${c}"/><rect x="-6" y="-1" width="12" height="2" fill="${k}"/>`;
+            case "crane": return `<rect x="-16" y="-9" width="30" height="18" rx="3" fill="${c}"/><rect x="-13" y="-6" width="11" height="12" rx="2" fill="${k}"/><g class="rw-arm"><rect x="0" y="-1.5" width="18" height="3" rx="1.5" fill="${k}"/><rect x="17" y="-2.5" width="6" height="5" rx="2" fill="${k}"/></g><circle cx="-10" cy="11" r="2.5" fill="#111"/><circle cx="10" cy="11" r="2.5" fill="#111"/>`;
+            case "car": return `<rect x="-15" y="-8" width="30" height="16" rx="6" fill="${c}"/><rect x="-6" y="-8" width="8" height="16" fill="${k}"/><rect x="5" y="-6" width="5" height="12" rx="2" fill="${d}"/><circle cx="-10" cy="11" r="2.5" fill="#111"/><circle cx="10" cy="11" r="2.5" fill="#111"/>`;
+            case "heli": return `<ellipse cx="0" cy="0" rx="14" ry="6" fill="${c}"/><rect x="-32" y="-1.5" width="19" height="3" fill="${c}"/><circle cx="-32" cy="0" r="3" fill="${k}"/><rect x="2" y="-5" width="16" height="10" rx="2" fill="${k}"/><circle cx="10" cy="0" r="3" fill="#111"/>`;
             default: return "";
         }
     }
@@ -474,6 +474,21 @@
     }
 
     const ALL_WORKERS = ["thomas", "diesel", "kevin", "george", "byron", "henry", "jack13", "jack16"];
+    const WORKFLOW_ROLES = {
+        thomas: "transporte ferroviário",
+        diesel: "locomotiva de logística",
+        henry: "transporte pesado",
+        byron: "preparação do terreno",
+        george: "compactação e pavimentação",
+        kevin: "organização de suprimentos",
+        jack13: "movimentação de cascalho",
+        jack16: "movimentação de cascalho",
+        winston: "inspeção terrestre",
+        harold: "inspeção aérea",
+        hogwarts: "circulação especial"
+    };
+    const INSPECTION_TEAM = ["winston", "harold", "thomas", "diesel", "henry"];
+    const FINAL_CONVERGENCE = ALL_WORKERS.concat(["winston", "harold"]);
     const ZONE = [{ x: 440, y: 225 }, { x: 590, y: 225 }, { x: 590, y: 262 }, { x: 440, y: 262 }, { x: 440, y: 299 }, { x: 590, y: 299 }];
 
     function say(text, ok) {
@@ -497,6 +512,32 @@
         }
     }
 
+    function enforceRoles() {
+        Object.entries(WORKFLOW_ROLES).forEach(([id, description]) => {
+            const vehicle = fleet[id];
+            if (!vehicle || !vehicle.spec) return;
+            vehicle.spec.func = description;
+        });
+    }
+
+    function centralInspectionSequence() {
+        INSPECTION_TEAM.forEach(id => {
+            if (!fleet[id]) return;
+            const v = fleet[id];
+            if (id === "harold") {
+                const pts = [{ x: 500, y: 205 }];
+                for (let d = -80; d <= 280; d += 10) pts.push({ x: 500 + 300 * Math.cos(d * A2R), y: 500 + 290 * Math.sin(d * A2R) });
+                pts.push({ x: 500, y: 500 });
+                hold(v, 0.5); drive(v, pts);
+            } else if (id === "winston") {
+                const L = rampLen(RAMP_CROSS.x, RAMP_CROSS.y);
+                go(v, RAMP_CROSS.x, RAMP_CROSS.y); drive(v, rampUp(L)); drive(v, ringPts(90, 630));
+            } else {
+                toRing(v);
+            }
+        });
+    }
+
     /* [rotulo, entrada, tempo minimo em segundos] */
     const STAGES = [
         ["Preparação do local", () => { drive(fleet.byron, ZONE); }, 0],
@@ -516,7 +557,7 @@
             const w = fleet.winston, L = rampLen(RAMP_CROSS.x, RAMP_CROSS.y);
             go(w, RAMP_CROSS.x, RAMP_CROSS.y); drive(w, rampUp(L)); drive(w, ringPts(90, 630));
         }, 0],
-        ["Passagem dos veículos pela região central", () => { ALL_WORKERS.forEach(id => toRing(fleet[id])); }, 0],
+        ["Passagem dos veículos pela região central", () => { ALL_WORKERS.forEach(id => toRing(fleet[id])); centralInspectionSequence(); }, 0],
         ["Apoio aéreo (Harold)", () => {
             const h = fleet.harold, pts = [{ x: 500, y: 205 }];
             for (let d = -80; d <= 280; d += 10) pts.push({ x: 500 + 300 * Math.cos(d * A2R), y: 500 + 290 * Math.sin(d * A2R) });
@@ -530,7 +571,7 @@
             const w = fleet.winston, L = rampLen(RAMP_CROSS.x, RAMP_CROSS.y);
             drive(w, ringPts(270, 450)); drive(w, rampDown(L)); go(w, w.spec.x, w.spec.y);
         }, 0],
-        ["Convergência para a região da turbina", () => { ALL_WORKERS.forEach(id => toTurbine(fleet[id])); }, 0],
+        ["Convergência para a região da turbina", () => { FINAL_CONVERGENCE.forEach(id => toTurbine(fleet[id])); }, 0],
         ["Início da rotação da turbina", () => turbineMode("slow"), 2.5],
         ["Clímax: turbina em rotação máxima", () => turbineMode("climax"), 6],
         ["Conclusão do ciclo", () => turbineMode("slow"), 2],
@@ -785,6 +826,7 @@
             dom.bound = true;
         }
 
+        enforceRoles();
         buildFleet();
         placeParkedUnits();
         syncControls();
