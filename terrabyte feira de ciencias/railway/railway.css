@@ -48,11 +48,6 @@
 .rw-tower-flag{fill:#2f9bd8}
 .rw-station-pad{fill:#4a9a5a;stroke:#2f6e40;stroke-width:2}
 .rw-station-roof{fill:#b8efcb;stroke:#6fb98a;stroke-width:2}
-.rw-parked rect{stroke:rgba(0,0,0,.35);stroke-width:1.4}
-.rw-parked circle{fill:rgba(255,255,255,.75)}
-.rw-parked-green rect{fill:#4cae5b}
-.rw-parked-red rect{fill:#c93a2e}
-.rw-parked-blue rect{fill:#2f86d4}
 
 /* ---------- Trem de passageiros (inspirado no Expresso de Hogwarts de brinquedo) ----------
    Vista superior; frente do trem = +x. */
@@ -108,3 +103,45 @@
     .railway-controls button{flex:1 1 40%}
     .railway-state{margin-left:0;flex-basis:100%;text-align:center}
 }
+
+/* ---------- Frota, agua, turbina e inspecao ---------- */
+.rw-veh{pointer-events:none;filter:drop-shadow(1.5px 2.5px 1.5px rgba(0,0,0,.35))}
+.rw-veh-body>*{stroke:rgba(0,0,0,.45);stroke-width:1}
+.rw-veh-label{font:700 11px/1 system-ui,sans-serif;fill:#fff;stroke:rgba(20,40,50,.75);stroke-width:3;paint-order:stroke;stroke-linejoin:round}
+.rw-cargo{fill:#8a5a2b;stroke:#4b2f14;stroke-width:1}
+.rw-heli-shadow{fill:#000}
+.rw-heli-rotor{transform-origin:0 0}
+.rw-heli-rotor>*{fill:rgba(40,40,50,.75);stroke:none}
+.rw-veh[data-flying="1"] .rw-heli-rotor{animation:rw-spin .22s linear infinite}
+@keyframes rw-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+.rw-pond{fill:#5cc2ea;stroke:#2f8fbf;stroke-width:3}
+.rw-wave{fill:none;stroke:rgba(255,255,255,.75);stroke-width:2;stroke-linecap:round;stroke-dasharray:14 22;animation:rw-wave 5s linear infinite}
+.rw-wave-2{animation-duration:7s;animation-direction:reverse}
+@keyframes rw-wave{to{stroke-dashoffset:-72}}
+.rw-ripple{fill:none;stroke:#fff;stroke-width:1.6}
+
+.rw-tpad{fill:#e9f6fb;stroke:#8ab7c9;stroke-width:2}
+.rw-tglow{fill:none;stroke:#ffd45a;stroke-width:5;opacity:0}
+.rw-turbine-rotor path{fill:#fff;stroke:#7fa7b6;stroke-width:1}
+.rw-turbine-rotor{transform-origin:0 0}
+.rw-thub{fill:#2f9bd8}
+.rw-turbine.is-spin .rw-turbine-rotor{animation:rw-spin 1.4s linear infinite}
+.rw-turbine.is-climax .rw-turbine-rotor{animation-duration:.35s}
+.rw-turbine.is-climax .rw-tglow{animation:rw-glow 1s ease-in-out infinite}
+@keyframes rw-glow{0%,100%{opacity:.15}50%{opacity:.9}}
+
+.rw-verdict rect{fill:rgba(255,255,255,.94);stroke:#e39a1d;stroke-width:2}
+.rw-verdict text{font:800 13px system-ui,sans-serif;fill:#8a4b00}
+.rw-verdict.is-approved rect{stroke:#2f9b57;fill:#e5f8ec}
+.rw-verdict.is-approved text{fill:#17703f}
+
+#turbine.cycle-spin:not(.is-spinning) .turbine-rotor{animation:rotor-spin var(--cycle-spin,1.4s) linear infinite}
+#turbine.cycle-paused:not(.is-spinning) .turbine-rotor,.railway-section.is-paused .rw-turbine-rotor,.railway-section.is-paused .rw-wave,.railway-section.is-paused .rw-heli-rotor,.railway-section.is-paused .rw-tglow{animation-play-state:paused}
+
+.rw-swatch-water{background:#5cc2ea}
+.rw-swatch-turbine{background:#e9f6fb;border-color:#8ab7c9}
+.railway-catalog{width:100%;border-collapse:collapse;font-size:.82rem}
+.railway-catalog th,.railway-catalog td{padding:6px 8px;text-align:left;border-bottom:1px solid rgba(62,156,190,.18);vertical-align:top}
+
+@media(prefers-reduced-motion:reduce){.rw-wave{animation:none}}
