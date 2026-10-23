@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TerraByte - Simulação da turbina eólica">
+    <meta name="theme-color" content="#a8e8f7">
+    <title>TerraByte | Simulação da Turbina</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo-area">
+            <h1>TerraByte</h1>
+            <span>PROTÓTIPO 000</span>
+        </div>
+
+        <div class="system-status">
+            <span class="status-light"></span>
+            SISTEMA ONLINE
+        </div>
+    </header>
+
+    <nav class="site-navigation" aria-label="Navegação principal">
+        <a href="index.html">Pesquisa</a>
+        <a href="simulacao.html">Simulação da Turbina</a>
+        <a href="trens.html">Trens</a>
+    </nav>
+
+    <main>
+        <section class="simulation-section" id="simulationSection">
+            <div class="section-title">
+                <div class="section-number">01</div>
+                <div>
+                    <span class="section-tag">SIMULAÇÃO</span>
+                    <h2>Central de Energia Eólica</h2>
+                </div>
+            </div>
+
+            <section class="simulation">
+                <div class="turbine-area" id="turbineArea">
+                    <div class="clouds" aria-hidden="true">
+                        <span class="cloud cloud-1"></span>
+                        <span class="cloud cloud-2"></span>
+                    </div>
+
+                    <div class="wind-particles" aria-hidden="true">
+                        <span style="--y:18%;--t:3.2s;--d:0s"></span>
+                        <span style="--y:30%;--t:2.6s;--d:0.6s"></span>
+                        <span style="--y:42%;--t:3.8s;--d:1.2s"></span>
+                        <span style="--y:54%;--t:2.9s;--d:0.3s"></span>
+                        <span style="--y:66%;--t:3.4s;--d:1.6s"></span>
+                        <span style="--y:78%;--t:2.7s;--d:0.9s"></span>
+                    </div>
+
+                    <div class="fault-banner" id="faultBanner" hidden>
+                        SOBRETENSÃO — FALHA SIMULADA
+                    </div>
+
+                    <div
+                        id="turbine"
+                        class="turbine-3d"
+                        role="img"
+                        aria-label="Representação 3D simplificada do protótipo TerraByte"
+                    >
+                        <div class="tb-tower"></div>
+                        <div class="tb-nacelle"></div>
+                        <div class="tb-hub-wrap">
+                            <div class="turbine-rotor">
+                                <span class="tb-blade" style="--a:0deg"></span>
+                                <span class="tb-blade" style="--a:90deg"></span>
+                                <span class="tb-blade" style="--a:180deg"></span>
+                                <span class="tb-blade" style="--a:270deg"></span>
+                                <span class="tb-spinner"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grass-field" aria-hidden="true"></div>
+
+                    <div class="simulation-label">
+                        MODELO EDUCACIONAL · REPRESENTAÇÃO DIGITAL
+                    </div>
+                </div>
+
+                <div class="control-panel" id="controlPanel">
+                    <h2>Central de Controle</h2>
+
+                    <p class="lock-notice" id="lockNotice" hidden>
+                        Parâmetros bloqueados durante a simulação.
+                    </p>
+
+                    <div class="legend" aria-label="Legenda de rótulos">
+                        <span class="tag tag-real">DADO REAL</span>
+                        <span class="tag tag-sim">SIMULADO / ESTIMADO</span>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="voltage">
+                            Tensão aplicada (condição virtual)
+                        </label>
+
+                        <input
+                            type="range"
+                            id="voltage"
+                            min="0"
+                            max="3"
+                            value="1.5"
+                            step="0.1"
+                        >
+
+                        <p>
+                            <strong id="voltageValue">1,5</strong> V
+                            <span class="tag tag-real" id="voltageTag">DADO REAL DO PROTÓTIPO</span>
+                        </p>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="windSpeed">
+                            Velocidade do vento
+                        </label>
+
+                        <input
+                            type="range"
+                            id="windSpeed"
+                            min="0"
+                            max="25"
+                            value="12"
+                            step="0.1"
+                        >
+
+                        <p>
+                            <strong id="windValue">12,0</strong> m/s
+                        </p>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="rotorArea">
+                            Área varrida pelo rotor
+                        </label>
+
+                        <input
+                            type="range"
+                            id="rotorArea"
+                            min="1"
+                            max="100"
+                            value="50"
+                            step="1"
+                        >
+
+                        <p>
+                            <strong id="areaValue">50</strong> m²
+                        </p>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="efficiency">
+                            Eficiência do sistema
+                        </label>
+
+                        <input
+                            type="range"
+                            id="efficiency"
+                            min="10"
+                            max="100"
+                            value="80"
+                            step="1"
+                        >
+
+                        <p>
+                            <strong id="efficiencyValue">80</strong> %
+                        </p>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="simulationTime">
+                            Tempo da simulação
+                        </label>
+
+                        <input
+                            type="range"
+                            id="simulationTime"
+                            min="1"
+                            max="60"
+                            value="1"
+                            step="1"
+                        >
+
+                        <p>
+                            <strong id="timeValue">1</strong> min
+                        </p>
+                    </div>
+
+                    <div class="simulation-controls">
+                        <button id="startButton" type="button">
+                            INICIAR SIMULAÇÃO
+                        </button>
+
+                        <button
+                            id="resetButton"
+                            class="btn-secondary"
+                            type="button"
+                        >
+                            RESETAR
+                        </button>
+
+                        <button
+                            id="returnRealButton"
+                            class="btn-secondary"
+                            type="button"
+                        >
+                            VOLTAR A 1,5 V (REAL)
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="data-panel" aria-label="Dados da simulação">
+                <div class="data-card">
+                    <span>TENSÃO APLICADA</span>
+                    <strong id="voltageData">1,5 V</strong>
+                    <small class="tag-line" id="voltageDataTag">DADO REAL DO PROTÓTIPO</small>
+                </div>
+
+                <div class="data-card">
+                    <span>VELOCIDADE DO VENTO</span>
+                    <strong id="speedData">12,0 m/s</strong>
+                    <small class="tag-line">VALOR SIMULADO</small>
+                </div>
+
+                <div class="data-card">
+                    <span>ROTAÇÃO</span>
+                    <strong id="rpmData">0 RPM</strong>
+                    <small class="tag-line">RPM ESTIMADA / SIMULADA</small>
+                </div>
+
+                <div class="data-card">
+                    <span>ÁREA DO ROTOR</span>
+                    <strong id="areaData">50 m²</strong>
+                </div>
+
+                <div class="data-card">
+                    <span>POTÊNCIA TEÓRICA</span>
+                    <strong id="theoreticalPowerData">0,00 kW</strong>
+                    <small class="tag-line">ESTIMADA (FÓRMULA)</small>
+                </div>
+
+                <div class="data-card">
+                    <span>POTÊNCIA CONSIDERADA</span>
+                    <strong id="powerData">0,00 kW</strong>
+                    <small class="tag-line" id="powerLimitNote" hidden>Limitada pela potência nominal de 1 kW</small>
+                </div>
+
+                <div class="data-card">
+                    <span>ENERGIA ESTIMADA</span>
+                    <strong id="energyData">0,000 kWh</strong>
+                </div>
+
+                <div class="data-card">
+                    <span>EFICIÊNCIA</span>
+                    <strong id="efficiencyData">80 %</strong>
+                </div>
+
+                <div class="data-card">
+                    <span>TEMPO</span>
+                    <strong id="timeData">1 min</strong>
+                </div>
+
+                <div class="data-card">
+                    <span>CONDIÇÃO DO VENTO</span>
+                    <strong id="windStateData">MODERADO</strong>
+                </div>
+
+                <div class="data-card">
+                    <span>ESTADO DO SISTEMA</span>
+                    <strong id="systemState">PARADO</strong>
+                </div>
+            </section>
+
+            <section class="energy-flow" aria-label="Etapas da geração">
+                <div class="energy-step">
+                    <span aria-hidden="true">🌬️</span>
+                    <p>Vento</p>
+                </div>
+
+                <strong aria-hidden="true">→</strong>
+
+                <div class="energy-step">
+                    <span aria-hidden="true">🌀</span>
+                    <p>Turbina</p>
+                </div>
+
+                <strong aria-hidden="true">→</strong>
+
+                <div class="energy-step">
+                    <span aria-hidden="true">⚡</span>
+                    <p>Gerador</p>
+                </div>
+
+                <strong aria-hidden="true">→</strong>
+
+                <div class="energy-step">
+                    <span aria-hidden="true">🏙️</span>
+                    <p>Rede elétrica</p>
+                </div>
+            </section>
+
+            <p class="text-muted">
+                Os valores apresentados são estimativas produzidas por um
+                modelo matemático educacional. Não representam medições
+                de uma turbina real nem energia efetivamente fornecida à rede.
+            </p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
