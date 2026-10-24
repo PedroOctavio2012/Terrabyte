@@ -350,7 +350,9 @@
                 spec: s, el: g, body: g.querySelector(".rw-veh-body"), arm: g.querySelector(".rw-arm"),
                 shadow: g.querySelector(".rw-heli-shadow"), cargo: g.querySelector(".rw-cargo"),
                 x: s.x, y: s.y, a: s.a || 0, ex: s.x, ey: s.y, q: [], tot: 0, done: 0, armT: 0,
-                speed: s.kind === "heli" ? AIR_SPEED : VISUAL_SPEED
+                speed: s.kind === "heli" ? AIR_SPEED : VISUAL_SPEED,
+                maxSpeed: s.kind === "heli" ? AIR_SPEED : VISUAL_SPEED,
+                turnBias: s.kind === "heli" ? 12 : 10
             };
         });
 
@@ -597,6 +599,16 @@
     /* ----- movimento ----- */
 
     function stepVehicle(v, dt) {
+        const accel = v.spec.kind === "heli" ? 120 : 140;
+        const brake = v.spec.kind === "heli" ? 100 : 120;
+        const desired = v.q.length ? v.maxSpeed : 0;
+
+        if (desired > v.speed) {
+            v.speed = Math.min(desired, v.speed + accel * dt);
+        } else if (desired < v.speed) {
+            v.speed = Math.max(0, v.speed - brake * dt);
+        }
+
         let rem = dt, target = null;
         while (rem > 0 && v.q.length) {
             const t = v.q[0];
@@ -607,17 +619,23 @@
             const dx = t.x - v.x, dy = t.y - v.y, d = Math.hypot(dx, dy);
             if (d < 1e-6) { v.q.shift(); continue; }
             target = Math.atan2(dy, dx) / A2R;
-            const need = d / v.speed;
+            const moveSpeed = Math.max(v.speed, 0.01);
+            const need = d / moveSpeed;
             if (need > rem) {
-                v.x += (dx / d) * v.speed * rem; v.y += (dy / d) * v.speed * rem; v.done += v.speed * rem; rem = 0;
+                v.x += (dx / d) * moveSpeed * rem;
+                v.y += (dy / d) * moveSpeed * rem;
+                v.done += moveSpeed * rem;
+                rem = 0;
             } else {
                 v.x = t.x; v.y = t.y; v.done += d; rem -= need; v.q.shift();
             }
         }
+
         if (target !== null) {
             const diff = ((target - v.a + 540) % 360) - 180;
-            v.a += diff * Math.min(1, dt * 10);
+            v.a += diff * Math.min(1, dt * (v.turnBias ?? 10));
         }
+
         if (v.armT > 0) {
             v.armT = Math.max(0, v.armT - dt);
             if (v.armT === 0 && fleet.diesel.cargo) fleet.diesel.cargo.setAttribute("visibility", "hidden");
@@ -676,7 +694,7 @@
         if (!fx.built) return;
         Object.values(fleet).forEach(v => {
             v.x = v.ex = v.spec.x; v.y = v.ey = v.spec.y; v.a = v.spec.a || 0;
-            v.q = []; v.tot = 0; v.done = 0; v.armT = 0;
+            v.q = []; v.tot = 0; v.done = 0; v.armT = 0; v.speed = v.maxSpeed;
         });
         if (fleet.diesel.cargo) fleet.diesel.cargo.setAttribute("visibility", "hidden");
         ripples.pool.forEach(p => { p.on = false; p.el.setAttribute("opacity", "0"); });
