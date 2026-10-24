@@ -1,0 +1,39 @@
+/*
+  TerraByte - Sistema de updates do protótipo
+  Arquivo criado para completar a página de trens e evitar referência quebrada.
+  Este módulo é opcional: mantém o layout estável caso o projeto adicione
+  avisos, banners ou notificações de sistema no futuro.
+*/
+
+.system-updates {
+  display: block;
+  width: 100%;
+}
+
+.system-updates * {
+  box-sizing: border-box;
+}
+
+.system-updates-banner {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(10, 92, 133, 0.14);
+  background: rgba(125, 200, 234, 0.12);
+  color: #14334c;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.system-updates-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: #14334c;
+  line-height: 1.7;
+}
+
+.system-updates-list li + li {
+  margin-top: 0.4rem;
+}
